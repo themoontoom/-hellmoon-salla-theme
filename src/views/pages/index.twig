@@ -1,0 +1,83 @@
+{#
+| Variable         | Type       | Description                                                         |
+|------------------|------------|---------------------------------------------------------------------|
+| page             | object     |                                                                     |
+| page.title       | string     | *could be html                                                      |
+| page.slug        | string     | ex: "cat.show"                                                      |
+#}
+{% extends "layouts.master" %}
+{% block content %}
+    <section class="hellmoon-hero" aria-labelledby="hellmoon-hero-title">
+        <div class="hellmoon-hero__slashes" aria-hidden="true"></div>
+        <div class="container hellmoon-hero__inner">
+            <div class="hellmoon-hero__copy">
+                <h1 id="hellmoon-hero-title">
+                    {{ theme.settings.get('hellmoon_hero_title', theme.is_rtl ? 'تحكم أقوى. لعب أذكى.' : 'Stronger control. Smarter play.') }}
+                </h1>
+                <p>
+                    {{ theme.settings.get('hellmoon_hero_description', theme.is_rtl ? 'سكربتات وخدمات قيمنق مصممة لتعطيك تجربة أسرع وتحكم أدق.' : 'Gaming scripts and services built for faster response and more precise control.') }}
+                </p>
+                <div class="hellmoon-hero__actions">
+                    <a class="hellmoon-btn hellmoon-btn--primary" href="{{ store.url }}/products">
+                        <i class="sicon-shopping-bag" aria-hidden="true"></i>
+                        <span>{{ theme.settings.get('hellmoon_primary_label', theme.is_rtl ? 'تسوق الآن' : 'Shop now') }}</span>
+                    </a>
+                    <a class="hellmoon-btn hellmoon-btn--secondary" href="#hellmoon-home-components">
+                        <span>{{ theme.settings.get('hellmoon_secondary_label', theme.is_rtl ? 'استكشف السكربتات' : 'Explore scripts') }}</span>
+                        <i class="sicon-arrow-left" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hellmoon-hero__visual" aria-hidden="true">
+                <img fetchpriority="high"
+                     loading="eager"
+                     src="{{ 'images/hellmoon-hero.webp' | asset }}"
+                     width="1280"
+                     height="854"
+                     alt="">
+            </div>
+        </div>
+    </section>
+
+    <div id="hellmoon-home-components" class="hellmoon-home-components">
+        {% component home %}
+    </div>
+
+    <section class="hellmoon-steps" aria-labelledby="hellmoon-steps-title">
+        <div class="container">
+            <h2 id="hellmoon-steps-title">
+                {{ theme.is_rtl ? 'من الطلب إلى اللعب، بخطوات واضحة' : 'From checkout to play, in clear steps' }}
+            </h2>
+            <ol>
+                <li>
+                    <span class="hellmoon-steps__number">01</span>
+                    <i class="sicon-mouse" aria-hidden="true"></i>
+                    <div>
+                        <h3>{{ theme.is_rtl ? 'اختر منتجك' : 'Choose your product' }}</h3>
+                        <p>{{ theme.is_rtl ? 'تصفح الخيارات واختر الأنسب لك.' : 'Browse and pick what fits you.' }}</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="hellmoon-steps__number">02</span>
+                    <i class="sicon-credit-card" aria-hidden="true"></i>
+                    <div>
+                        <h3>{{ theme.is_rtl ? 'أكمل طلبك' : 'Complete your order' }}</h3>
+                        <p>{{ theme.is_rtl ? 'أدخل بياناتك وأكد عملية الدفع.' : 'Enter your details and confirm payment.' }}</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="hellmoon-steps__number">03</span>
+                    <i class="sicon-cloud-download" aria-hidden="true"></i>
+                    <div>
+                        <h3>{{ theme.is_rtl ? 'استلم التفاصيل' : 'Receive the details' }}</h3>
+                        <p>{{ theme.is_rtl ? 'يصلك المنتج الرقمي بطريقة واضحة.' : 'Get your digital product clearly.' }}</p>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </section>
+{% endblock %}
+{% block scripts %}
+    <script defer src="{{ 'home.js' | asset }}"></script>
+{% endblock %}

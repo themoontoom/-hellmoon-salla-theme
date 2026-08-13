@@ -1,0 +1,47 @@
+{#
+| Variable         | Type   | Description
+|------------------|--------|----------------------------
+| cart             | object | Current cart summary
+| cart.items_count | int    | Number of cart items
+#}
+<header data-testid="store-header" class="store-header hellmoon-header">
+    <div id="mainnav" class="main-nav-container">
+        <div class="inner">
+            <div class="container hellmoon-nav">
+                <div class="hellmoon-nav__brand-wrap">
+                    <a data-testid="store-header-mobile-toggle"
+                       class="hellmoon-menu-toggle lg:hidden"
+                       href="#mobile-menu"
+                       aria-label="{{ theme.is_rtl ? 'فتح القائمة' : 'Open menu' }}">
+                        <i class="sicon-menu" aria-hidden="true"></i>
+                    </a>
+
+                    <a data-testid="store-header-logo" class="navbar-brand hellmoon-brand" href="{{ store.url }}">
+                        <img fetchpriority="high"
+                             loading="eager"
+                             src="{{ 'images/hellmoon-mark.webp' | asset }}"
+                             width="52"
+                             height="52"
+                             alt="">
+                        <span class="hellmoon-brand__name">HELL MOON</span>
+                        {% if is_page('index') %}
+                            <h1 class="sr-only">{{ store.name }}</h1>
+                        {% else %}
+                            <h2 class="sr-only">{{ store.name }}</h2>
+                        {% endif %}
+                    </a>
+                </div>
+
+                <custom-main-menu></custom-main-menu>
+
+                <div class="hellmoon-nav__actions">
+                    <salla-search data-testid="store-header-search"></salla-search>
+                    <salla-user-menu data-testid="store-header-user-menu" show-header show-trigger></salla-user-menu>
+                    <salla-cart-summary data-testid="store-header-cart">
+                        <i slot="icon" class="header-btn__icon sicon-shopping-bag" aria-hidden="true"></i>
+                    </salla-cart-summary>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

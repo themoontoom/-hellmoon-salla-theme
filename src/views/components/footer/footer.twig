@@ -1,0 +1,46 @@
+<footer data-testid="store-footer" class="store-footer hellmoon-footer">
+    <div class="hellmoon-footer__inner">
+        <div class="container hellmoon-footer__grid">
+            <div class="hellmoon-footer__brand">
+                <a href="{{ link('/') }}" class="hellmoon-brand" aria-label="{{ store.name }}">
+                    <img loading="lazy"
+                         src="{{ 'images/hellmoon-mark.webp' | asset }}"
+                         width="54"
+                         height="54"
+                         alt="">
+                    <span class="hellmoon-brand__name">HELL MOON</span>
+                </a>
+                {% if store.description %}
+                    <div class="hellmoon-footer__description">{{ store.description|raw }}</div>
+                {% else %}
+                    <p class="hellmoon-footer__description">
+                        {{ theme.is_rtl ? 'سكربتات وخدمات قيمنق مصممة لتجربة أسرع وتحكم أدق.' : 'Gaming scripts and services for faster response and sharper control.' }}
+                    </p>
+                {% endif %}
+                <salla-social data-testid="store-footer-social"></salla-social>
+            </div>
+
+            <div class="hellmoon-footer__links">
+                <h3>{{ theme.is_rtl ? 'المتجر' : 'Store' }}</h3>
+                <salla-menu data-testid="store-footer-menu" source="footer" with-cookie-preferences></salla-menu>
+            </div>
+
+            <div class="hellmoon-footer__contact">
+                <h3>{{ theme.is_rtl ? 'تواصل معنا' : 'Contact us' }}</h3>
+                <salla-contacts data-testid="store-footer-contacts"></salla-contacts>
+                <div class="hellmoon-footer__trust">
+                    <salla-trust-badges data-testid="store-footer-trust-badges" dark></salla-trust-badges>
+                </div>
+            </div>
+
+            <div class="hellmoon-footer__apps">
+                <salla-apps-icons data-testid="store-footer-apps"></salla-apps-icons>
+            </div>
+        </div>
+    </div>
+
+    <div class="container hellmoon-footer__bottom">
+        <span class="copyright-text">{% hook copyright %}</span>
+        <salla-payments data-testid="store-footer-payments"></salla-payments>
+    </div>
+</footer>

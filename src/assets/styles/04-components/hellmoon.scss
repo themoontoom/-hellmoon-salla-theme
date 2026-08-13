@@ -1,0 +1,1412 @@
+/* Hell Moon visual system -------------------------------------------------- */
+
+.theme-hellmoon {
+  --hm-container: 1420px;
+  --hm-radius-sm: 10px;
+  --hm-radius-md: 14px;
+  --hm-space-section: clamp(3.75rem, 7vw, 7rem);
+  background: var(--hm-bg);
+  color: var(--hm-text);
+  min-height: 100%;
+  color-scheme: dark;
+
+  &,
+  button,
+  input,
+  textarea,
+  select {
+    font-family: var(--font-main), "DIN Next Arabic", system-ui, sans-serif;
+  }
+
+  .container {
+    width: min(calc(100% - 2rem), var(--hm-container));
+    max-width: var(--hm-container);
+    margin-inline: auto;
+  }
+
+  main {
+    background:
+      radial-gradient(circle at 12% 18%, rgba(123, 17, 38, .07), transparent 28rem),
+      var(--hm-bg);
+  }
+
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--hm-accent);
+    outline-offset: 3px;
+  }
+
+  .text-gray-900,
+  .text-gray-800,
+  .text-gray-700,
+  .text-black {
+    color: var(--hm-text) !important;
+  }
+
+  .text-gray-600,
+  .text-gray-500,
+  .text-gray-400,
+  .color-grey {
+    color: var(--hm-muted) !important;
+  }
+
+  .bg-white,
+  .bg-gray-50,
+  .bg-gray-100 {
+    background-color: var(--hm-surface) !important;
+  }
+
+  .border-gray-100,
+  .border-gray-200,
+  .border-gray-300 {
+    border-color: var(--hm-border) !important;
+  }
+
+  .shadow-default {
+    box-shadow: 0 24px 70px rgba(0, 0, 0, .25);
+  }
+
+  .breadcrumbs {
+    color: var(--hm-muted);
+
+    a:hover {
+      color: var(--hm-text);
+    }
+  }
+
+  .s-block {
+    margin-top: var(--hm-space-section);
+  }
+
+  .s-block__title,
+  .s-slider-block__title {
+    margin-bottom: 2rem;
+
+    h2,
+    h3 {
+      color: var(--hm-text);
+      font-size: clamp(1.6rem, 2.6vw, 2.35rem);
+      line-height: 1.25;
+      font-weight: 800;
+    }
+
+    p {
+      color: var(--hm-muted);
+    }
+  }
+}
+
+/* Header ------------------------------------------------------------------ */
+
+.theme-hellmoon .hellmoon-header {
+  position: relative;
+  z-index: 30;
+  border-bottom: 1px solid var(--hm-border);
+  background: rgba(8, 9, 11, .94);
+  backdrop-filter: blur(18px);
+
+  .main-nav-container {
+    min-height: 88px;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .main-nav-container .inner {
+    background: rgba(8, 9, 11, .94);
+    border-bottom: 1px solid transparent;
+  }
+
+  .main-nav-container.fixed-header .inner {
+    border-color: var(--hm-border);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, .32);
+  }
+}
+
+.hellmoon-nav {
+  min-height: 88px;
+  display: grid;
+  grid-template-columns: minmax(220px, auto) minmax(0, 1fr) minmax(220px, auto);
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.hellmoon-nav__brand-wrap,
+.hellmoon-nav__actions {
+  display: flex;
+  align-items: center;
+}
+
+.hellmoon-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+  color: var(--hm-text);
+  text-decoration: none;
+
+  img {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+  }
+}
+
+.hellmoon-brand__name {
+  color: var(--hm-text);
+  font-family: Inter, Arial, sans-serif;
+  font-size: 1.3rem;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: .2em;
+  white-space: nowrap;
+}
+
+.theme-hellmoon custom-main-menu {
+  min-height: auto;
+  min-width: 0;
+
+  .main-menu {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: clamp(.25rem, 1vw, 1rem);
+    margin: 0;
+  }
+
+  .main-menu > li > a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 88px;
+    padding: 0 clamp(.65rem, 1.25vw, 1.25rem);
+    color: #d6d3cf;
+    font-size: .95rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: color .2s ease;
+
+    &::after {
+      content: "";
+      position: absolute;
+      right: 50%;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--hm-accent);
+      transform: translateX(50%);
+      transition: width .2s ease;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: #fff;
+    }
+
+    &:hover::after,
+    &:focus-visible::after {
+      width: 46px;
+    }
+  }
+
+  .sub-menu {
+    background: rgba(17, 19, 24, .98) !important;
+    color: var(--hm-text);
+    border: 1px solid var(--hm-border);
+    border-radius: var(--hm-radius-sm);
+    box-shadow: 0 28px 80px rgba(0, 0, 0, .52);
+    overflow: hidden;
+  }
+
+  .sub-menu a {
+    color: var(--hm-muted);
+  }
+
+  .sub-menu a:hover {
+    color: var(--hm-text);
+    background: rgba(255, 255, 255, .05);
+  }
+}
+
+.hellmoon-nav__actions {
+  justify-content: flex-end;
+  gap: .45rem;
+
+  salla-search,
+  salla-user-menu,
+  salla-cart-summary {
+    color: var(--hm-text);
+  }
+
+  salla-search {
+    width: 44px;
+    min-width: 44px;
+  }
+
+  salla-cart-summary {
+    min-width: 52px;
+    margin: 0 !important;
+  }
+
+  .header-btn__icon {
+    width: 42px;
+    height: 42px;
+    margin: 0 !important;
+    color: var(--hm-text);
+    border: 1px solid var(--hm-border);
+    border-radius: var(--hm-radius-sm);
+    background: transparent;
+  }
+
+  .s-cart-summary-total {
+    display: none;
+  }
+
+  .s-cart-summary-count {
+    background: var(--hm-accent);
+    color: #fff;
+  }
+}
+
+.hellmoon-menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: var(--hm-text);
+  border: 1px solid var(--hm-border);
+  border-radius: var(--hm-radius-sm);
+  font-size: 1.3rem;
+}
+
+/* Hero -------------------------------------------------------------------- */
+
+.hellmoon-hero {
+  position: relative;
+  min-height: clamp(600px, 70vh, 760px);
+  overflow: hidden;
+  isolation: isolate;
+  border-bottom: 1px solid var(--hm-border);
+  background:
+    radial-gradient(circle at 20% 48%, rgba(123, 17, 38, .18), transparent 31rem),
+    linear-gradient(110deg, #08090b 20%, #0b0c0f 100%);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    opacity: .35;
+    background-image: linear-gradient(rgba(255, 255, 255, .025) 1px, transparent 1px);
+    background-size: 100% 96px;
+    mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 80%, transparent);
+  }
+}
+
+.hellmoon-hero__slashes {
+  position: absolute;
+  top: 14%;
+  left: 5%;
+  width: 30vw;
+  height: 54%;
+  z-index: -1;
+  opacity: .32;
+  background: repeating-linear-gradient(132deg, transparent 0 48px, #7b1126 49px 52px, transparent 53px 76px);
+  clip-path: polygon(0 52%, 100% 0, 100% 28%, 12% 74%);
+}
+
+.hellmoon-hero__inner {
+  min-height: inherit;
+  display: grid;
+  grid-template-columns: minmax(0, .95fr) minmax(0, 1.15fr);
+  align-items: center;
+  gap: clamp(1rem, 4vw, 5rem);
+  padding-block: 4rem;
+}
+
+.hellmoon-hero__copy {
+  position: relative;
+  z-index: 2;
+  max-width: 650px;
+
+  &::before {
+    content: "";
+    display: block;
+    width: 54px;
+    height: 2px;
+    margin-bottom: 1.5rem;
+    background: var(--hm-accent);
+    transform: skewX(-40deg);
+  }
+
+  h1 {
+    color: var(--hm-text);
+    font-size: clamp(3rem, 5.1vw, 5.6rem);
+    line-height: 1.14;
+    font-weight: 800;
+    letter-spacing: -.035em;
+    text-wrap: balance;
+  }
+
+  p {
+    max-width: 590px;
+    margin-top: 1.5rem;
+    color: #bbb9b5;
+    font-size: clamp(1.05rem, 1.6vw, 1.38rem);
+    line-height: 1.9;
+  }
+}
+
+.hellmoon-hero__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2.25rem;
+}
+
+.hellmoon-btn {
+  min-height: 58px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .75rem;
+  padding: .9rem 1.65rem;
+  border: 1px solid var(--hm-accent);
+  border-radius: var(--hm-radius-sm);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: transform .2s ease, background-color .2s ease, border-color .2s ease;
+
+  &:hover {
+    color: #fff;
+    transform: translateY(-2px);
+  }
+}
+
+.hellmoon-btn--primary {
+  min-width: 180px;
+  background: linear-gradient(135deg, #7b1126, #bc1537);
+  box-shadow: 0 16px 44px rgba(123, 17, 38, .24);
+
+  &:hover {
+    background: linear-gradient(135deg, #8c132c, #d0193e);
+  }
+}
+
+.hellmoon-btn--secondary {
+  min-width: 210px;
+  background: rgba(8, 9, 11, .5);
+
+  &:hover {
+    background: rgba(123, 17, 38, .12);
+  }
+}
+
+.hellmoon-hero__visual {
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 10%;
+    bottom: 12%;
+    left: 10%;
+    height: 18%;
+    z-index: -1;
+    background: rgba(123, 17, 38, .18);
+    filter: blur(60px);
+  }
+
+  img {
+    width: min(100%, 820px);
+    max-height: 650px;
+    object-fit: contain;
+    filter: drop-shadow(0 30px 50px rgba(0, 0, 0, .4));
+    animation: hellmoon-float 7s ease-in-out infinite;
+  }
+}
+
+@keyframes hellmoon-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+
+/* Section title and category rail ---------------------------------------- */
+
+.hellmoon-section-title {
+  display: grid;
+  grid-template-columns: minmax(24px, 1fr) auto minmax(24px, 1fr);
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: clamp(2rem, 4vw, 3.25rem);
+  text-align: center;
+
+  span {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(169, 15, 45, .9));
+  }
+
+  span:last-child {
+    transform: scaleX(-1);
+  }
+
+  h2 {
+    color: var(--hm-text);
+    font-size: clamp(1.8rem, 3vw, 2.55rem);
+    line-height: 1.25;
+    font-weight: 800;
+  }
+
+  h2::before,
+  h2::after {
+    content: "/";
+    display: inline-block;
+    margin-inline: 1rem;
+    color: var(--hm-accent);
+    font-size: .75em;
+    font-weight: 400;
+    transform: skewX(-14deg);
+  }
+}
+
+.hellmoon-categories {
+  margin-top: var(--hm-space-section) !important;
+}
+
+.hellmoon-categories__rail {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-block: 1px solid var(--hm-border);
+}
+
+.hellmoon-category {
+  position: relative;
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem 1.25rem;
+  color: var(--hm-text);
+  text-align: center;
+  border-inline-start: 1px solid var(--hm-border);
+  transition: background-color .25s ease, transform .25s ease;
+
+  &:first-child {
+    border-inline-start: 0;
+  }
+
+  > i {
+    color: var(--hm-accent);
+    font-size: 2.65rem;
+    transition: transform .25s ease;
+  }
+
+  h3 {
+    color: var(--hm-text);
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+
+  p {
+    margin-top: .45rem;
+    color: var(--hm-muted);
+    font-size: .86rem;
+  }
+
+  &:hover {
+    color: var(--hm-text);
+    background: linear-gradient(180deg, rgba(123, 17, 38, .08), rgba(255, 255, 255, .02));
+    transform: translateY(-3px);
+
+    > i {
+      transform: scale(1.08);
+    }
+  }
+}
+
+.hellmoon-category__arrow {
+  position: absolute;
+  inset-inline-end: 1rem;
+  bottom: 1rem;
+  color: var(--hm-accent);
+  font-size: .9rem;
+  opacity: 0;
+  transform: translateX(6px);
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.hellmoon-category:hover .hellmoon-category__arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Salla home blocks ------------------------------------------------------- */
+
+.theme-hellmoon .hellmoon-home-components {
+  padding-bottom: 1px;
+
+  .s-block--hero-slider:first-child,
+  .s-block--full-bg:first-child {
+    margin-top: var(--hm-space-section);
+  }
+
+  .s-block--categories .slide--cat-entry {
+    min-height: 155px;
+    color: var(--hm-text);
+    background: transparent;
+    border: 1px solid var(--hm-border);
+    border-radius: var(--hm-radius-sm);
+    box-shadow: none;
+
+    i {
+      color: var(--hm-accent);
+    }
+
+    &:hover {
+      color: var(--hm-text);
+      border-color: rgba(169, 15, 45, .7);
+      background: rgba(123, 17, 38, .08);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .25);
+    }
+  }
+
+  .s-block--slider-with-bg {
+    background: var(--hm-bg-soft);
+
+    .slider-bg::before {
+      background: linear-gradient(90deg, rgba(8, 9, 11, .95), rgba(8, 9, 11, .38));
+      opacity: 1;
+    }
+  }
+
+  .banner-entry,
+  .banner--fixed img,
+  .full-banner-entry {
+    border-radius: var(--hm-radius-md);
+  }
+}
+
+.theme-hellmoon .s-product-card-entry,
+.theme-hellmoon salla-product-card {
+  --color-grey: var(--hm-surface-2);
+  --color-text: var(--hm-muted);
+}
+
+.theme-hellmoon .s-product-card-entry {
+  color: var(--hm-text);
+  background: linear-gradient(145deg, rgba(20, 22, 27, .98), rgba(12, 14, 17, .98));
+  border: 1px solid var(--hm-border);
+  border-radius: var(--hm-radius-md);
+  overflow: hidden;
+  box-shadow: none;
+
+  &:hover {
+    border-color: rgba(169, 15, 45, .56);
+    box-shadow: 0 26px 70px rgba(0, 0, 0, .36);
+    transform: translateY(-4px);
+  }
+}
+
+.theme-hellmoon .s-product-card-image {
+  background: #0b0c0f;
+}
+
+.theme-hellmoon .s-product-card-content-title a,
+.theme-hellmoon .s-product-card-price,
+.theme-hellmoon .s-product-card-starting-price h4 {
+  color: var(--hm-text);
+}
+
+.theme-hellmoon .s-product-card-sale-price h4,
+.theme-hellmoon .s-product-card-starting-price h4 {
+  color: #e42a4d;
+}
+
+.theme-hellmoon salla-add-product-button .s-button-primary,
+.theme-hellmoon salla-button[color="primary"] .s-button-primary,
+.theme-hellmoon .btn--primary {
+  color: #fff;
+  background: linear-gradient(135deg, #7b1126, #bc1537);
+  border-color: transparent;
+  border-radius: var(--hm-radius-sm);
+}
+
+/* Steps ------------------------------------------------------------------- */
+
+.hellmoon-steps {
+  margin-top: var(--hm-space-section);
+  padding-block: clamp(2.5rem, 5vw, 4.5rem);
+  color: #fff;
+  border-block: 1px solid rgba(255, 255, 255, .08);
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, .2), transparent 35%, rgba(0, 0, 0, .2)),
+    #67101f;
+
+  h2 {
+    margin-bottom: 2.75rem;
+    color: #fff;
+    font-size: clamp(1.55rem, 2.7vw, 2.25rem);
+    line-height: 1.3;
+    font-weight: 800;
+    text-align: center;
+  }
+
+  ol {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+  }
+
+  li {
+    position: relative;
+    min-height: 104px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem clamp(1rem, 3vw, 2.75rem);
+    border-inline-start: 1px dashed rgba(255, 255, 255, .24);
+
+    &:first-child {
+      border-inline-start: 0;
+    }
+
+    > i {
+      width: 54px;
+      height: 54px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      grid-row: 1 / 3;
+      color: #fff;
+      background: rgba(8, 9, 11, .88);
+      border: 1px solid rgba(255, 255, 255, .18);
+      border-radius: 50%;
+      font-size: 1.35rem;
+    }
+
+    h3 {
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    p {
+      margin-top: .25rem;
+      color: rgba(255, 255, 255, .7);
+      font-size: .84rem;
+    }
+  }
+}
+
+.hellmoon-steps__number {
+  position: absolute;
+  top: -.65rem;
+  inset-inline-end: 1.5rem;
+  color: rgba(255, 255, 255, .22);
+  font-family: Inter, sans-serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+
+/* Product page ------------------------------------------------------------ */
+
+.theme-hellmoon.product-single,
+.theme-hellmoon:has([data-testid="store-product-title"]) {
+  .container--product-details {
+    padding-bottom: 2rem;
+  }
+}
+
+.theme-hellmoon [data-testid="store-product-image-slider"] {
+  border: 1px solid var(--hm-border);
+  border-radius: var(--hm-radius-md);
+  background:
+    radial-gradient(circle at 50% 35%, rgba(123, 17, 38, .12), transparent 55%),
+    #0c0e11;
+  overflow: hidden;
+}
+
+.theme-hellmoon [data-testid="store-product-image-slider"] .swiper-slide,
+.theme-hellmoon [data-testid="store-product-image-slider"] .s-slider-container {
+  background: transparent;
+}
+
+.theme-hellmoon [data-testid="store-product-thumbnails"] > * {
+  border: 1px solid var(--hm-border);
+  border-radius: var(--hm-radius-sm);
+  background: var(--hm-surface);
+  overflow: hidden;
+}
+
+.theme-hellmoon [data-testid="store-product-title"] {
+  margin-bottom: .8rem;
+  color: var(--hm-text) !important;
+  font-size: clamp(2rem, 3vw, 3.2rem);
+  line-height: 1.2;
+  font-weight: 800;
+}
+
+.theme-hellmoon [data-testid="store-product-price"] {
+  margin-block: 1rem 1.25rem;
+
+  p,
+  h2 {
+    color: #df2448;
+    font-size: 1.75rem;
+  }
+}
+
+.theme-hellmoon .product__description {
+  padding-inline: 0 !important;
+  color: var(--hm-muted);
+}
+
+.hellmoon-digital-note {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-block: 1.25rem;
+  padding: 1rem 1.1rem;
+  color: #c9c6c2;
+  background: rgba(123, 17, 38, .08);
+  border: 1px solid rgba(169, 15, 45, .32);
+  border-radius: var(--hm-radius-sm);
+  font-size: .9rem;
+
+  i {
+    color: #df2448;
+    font-size: 1.15rem;
+  }
+}
+
+.theme-hellmoon .product-form {
+  border: 1px solid var(--hm-border);
+  border-radius: var(--hm-radius-md);
+  background: rgba(17, 19, 24, .72);
+  overflow: hidden;
+
+  > section,
+  .sticky-product-bar {
+    background: transparent !important;
+    border-radius: 0 !important;
+  }
+
+  > section:first-of-type {
+    border-bottom: 1px solid var(--hm-border);
+  }
+}
+
+.theme-hellmoon .s-quantity-input-container,
+.theme-hellmoon salla-quantity-input {
+  color: var(--hm-text);
+  background: var(--hm-bg);
+  border-color: var(--hm-border-strong) !important;
+  border-radius: var(--hm-radius-sm);
+}
+
+.theme-hellmoon .s-quantity-input-input {
+  color: var(--hm-text);
+  background: transparent;
+}
+
+.hellmoon-product-features {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 2.25rem;
+  border-block: 1px solid var(--hm-border);
+
+  > div {
+    min-height: 88px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .75rem;
+    padding: 1rem;
+    color: var(--hm-text);
+    border-inline-start: 1px solid var(--hm-border);
+
+    &:first-child {
+      border-inline-start: 0;
+    }
+  }
+
+  i {
+    color: var(--hm-accent);
+    font-size: 1.55rem;
+  }
+
+  span {
+    font-size: .9rem;
+    font-weight: 700;
+  }
+}
+
+.theme-hellmoon salla-comments,
+.theme-hellmoon salla-products-slider,
+.theme-hellmoon salla-offer,
+.theme-hellmoon salla-quick-order,
+.theme-hellmoon salla-installment,
+.theme-hellmoon salla-metadata {
+  color: var(--hm-text);
+}
+
+/* Product listing and filters -------------------------------------------- */
+
+.theme-hellmoon .products-container,
+.theme-hellmoon .filters-container,
+.theme-hellmoon .product-index {
+  color: var(--hm-text);
+}
+
+.theme-hellmoon .filters-container,
+.theme-hellmoon .filters-menu,
+.theme-hellmoon .s-filters-container {
+  background: var(--hm-surface) !important;
+  border-color: var(--hm-border) !important;
+}
+
+.theme-hellmoon input,
+.theme-hellmoon textarea,
+.theme-hellmoon select,
+.theme-hellmoon .form-input {
+  color: var(--hm-text);
+  background: #0b0c0f;
+  border-color: var(--hm-border-strong);
+
+  &::placeholder {
+    color: #6e7177;
+  }
+}
+
+/* Cart -------------------------------------------------------------------- */
+
+.hellmoon-page-title {
+  position: relative;
+  margin-block: 1.25rem 2rem;
+  padding-inline-start: 1.25rem;
+  color: var(--hm-text);
+  font-size: clamp(2.3rem, 4vw, 4rem);
+  line-height: 1.15;
+  font-weight: 800;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    top: 18%;
+    width: 3px;
+    height: 64%;
+    background: var(--hm-accent);
+    transform: skewY(-25deg);
+  }
+}
+
+.theme-hellmoon .cart-item {
+  color: var(--hm-text);
+  background: transparent !important;
+  border-block: 1px solid var(--hm-border);
+  border-radius: 0 !important;
+  box-shadow: none;
+
+  img {
+    background: #0b0c0f !important;
+    border-color: var(--hm-border) !important;
+    border-radius: var(--hm-radius-sm);
+  }
+}
+
+.theme-hellmoon [data-testid="store-cart-item-total"],
+.theme-hellmoon .item-price {
+  color: #e22a4c !important;
+}
+
+.theme-hellmoon [data-testid="store-cart-delete-item"] button {
+  color: #e22a4c;
+  background: transparent;
+  border-color: transparent;
+}
+
+.theme-hellmoon [data-testid="store-cart-summary"],
+.theme-hellmoon [data-testid="store-cart-coupons"],
+.theme-hellmoon [data-testid="store-cart-loyalty"],
+.theme-hellmoon [data-testid="store-cart-gifting"] {
+  color: var(--hm-text);
+}
+
+.theme-hellmoon .sticky.top-24 > .bg-white,
+.theme-hellmoon .sticky.top-24 > [class*="shadow"] {
+  color: var(--hm-text);
+  background: var(--hm-surface) !important;
+  border: 1px solid var(--hm-border);
+  border-radius: var(--hm-radius-md) !important;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .25);
+}
+
+/* Footer ------------------------------------------------------------------ */
+
+.theme-hellmoon .hellmoon-footer {
+  margin-top: 0;
+  color: var(--hm-text);
+  background: #07080a;
+  border-top: 1px solid var(--hm-border);
+}
+
+.hellmoon-footer__inner {
+  padding-block: clamp(3.5rem, 6vw, 6rem);
+  border-bottom: 1px solid var(--hm-border);
+}
+
+.hellmoon-footer__grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 1.4fr) minmax(160px, .75fr) minmax(220px, 1fr) minmax(180px, .85fr);
+  gap: clamp(2rem, 5vw, 5rem);
+}
+
+.hellmoon-footer {
+  h3 {
+    margin-bottom: 1.2rem;
+    color: var(--hm-text);
+    font-size: 1rem;
+    font-weight: 800;
+  }
+
+  salla-menu,
+  salla-contacts,
+  salla-social,
+  salla-apps-icons {
+    color: var(--hm-muted);
+  }
+
+  a {
+    color: var(--hm-muted);
+  }
+
+  a:hover {
+    color: var(--hm-text);
+  }
+}
+
+.hellmoon-footer__description {
+  max-width: 380px;
+  margin-block: 1.25rem 1.75rem;
+  color: var(--hm-muted);
+  font-size: .92rem;
+  line-height: 1.9;
+}
+
+.hellmoon-footer__trust {
+  margin-top: 1.5rem;
+}
+
+.hellmoon-footer__bottom {
+  min-height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  color: #777a80;
+}
+
+.theme-hellmoon .copyright-text,
+.theme-hellmoon .copyright-text p {
+  color: #777a80;
+}
+
+/* Mobile navigation and responsive rules --------------------------------- */
+
+.hellmoon-mobile-nav {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 45;
+  min-height: calc(68px + env(safe-area-inset-bottom));
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding-bottom: env(safe-area-inset-bottom);
+  color: var(--hm-muted);
+  background: rgba(8, 9, 11, .96);
+  border-top: 1px solid var(--hm-border);
+  backdrop-filter: blur(18px);
+
+  a {
+    min-height: 68px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .35rem;
+    color: var(--hm-muted);
+    font-size: .73rem;
+  }
+
+  i {
+    font-size: 1.3rem;
+  }
+
+  a.is-active,
+  a:hover {
+    color: #e22a4c;
+  }
+}
+
+@media (max-width: 1180px) {
+  .hellmoon-nav {
+    grid-template-columns: minmax(190px, auto) minmax(0, 1fr) minmax(160px, auto);
+    gap: .6rem;
+  }
+
+  .hellmoon-brand__name {
+    font-size: 1.05rem;
+  }
+
+  .theme-hellmoon custom-main-menu .main-menu > li > a {
+    padding-inline: .65rem;
+    font-size: .86rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  .theme-hellmoon {
+    padding-bottom: calc(68px + env(safe-area-inset-bottom));
+  }
+
+  .theme-hellmoon .hellmoon-header,
+  .theme-hellmoon .hellmoon-header .main-nav-container .inner {
+    background: rgba(8, 9, 11, .97);
+  }
+
+  .hellmoon-nav {
+    min-height: 72px;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+  }
+
+  .hellmoon-nav__brand-wrap {
+    gap: .65rem;
+  }
+
+  .hellmoon-brand img {
+    width: 42px;
+    height: 42px;
+  }
+
+  .hellmoon-brand__name {
+    font-size: .95rem;
+    letter-spacing: .15em;
+  }
+
+  .hellmoon-nav__actions {
+    gap: .15rem;
+
+    salla-user-menu {
+      display: none;
+    }
+
+    .header-btn__icon {
+      width: 40px;
+      height: 40px;
+      border-color: transparent;
+    }
+  }
+
+  .theme-hellmoon custom-main-menu {
+    position: absolute;
+  }
+
+  .theme-hellmoon .mm-ocd__content {
+    color: var(--hm-text);
+    background: var(--hm-surface);
+  }
+
+  .theme-hellmoon .mobile-menu .main-menu a,
+  .theme-hellmoon .mobile-menu .main-menu span {
+    color: var(--hm-text);
+    border-color: var(--hm-border);
+  }
+
+  .hellmoon-hero {
+    min-height: auto;
+  }
+
+  .hellmoon-hero__inner {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding-block: 3.5rem 1.5rem;
+  }
+
+  .hellmoon-hero__copy {
+    max-width: 720px;
+    text-align: center;
+    margin-inline: auto;
+
+    &::before {
+      margin-inline: auto;
+    }
+
+    p {
+      margin-inline: auto;
+    }
+  }
+
+  .hellmoon-hero__actions {
+    justify-content: center;
+  }
+
+  .hellmoon-hero__visual {
+    min-height: 420px;
+  }
+
+  .hellmoon-hero__visual img {
+    max-height: 470px;
+  }
+
+  .hellmoon-categories__rail,
+  .hellmoon-product-features {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hellmoon-category:nth-child(3),
+  .hellmoon-product-features > div:nth-child(3) {
+    border-inline-start: 0;
+  }
+
+  .hellmoon-category:nth-child(n + 3),
+  .hellmoon-product-features > div:nth-child(n + 3) {
+    border-top: 1px solid var(--hm-border);
+  }
+
+  .hellmoon-steps ol {
+    grid-template-columns: 1fr;
+  }
+
+  .hellmoon-steps li {
+    border-inline-start: 0;
+    border-top: 1px dashed rgba(255, 255, 255, .24);
+  }
+
+  .hellmoon-steps li:first-child {
+    border-top: 0;
+  }
+
+  .hellmoon-footer__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .theme-hellmoon {
+    --hm-space-section: 3.75rem;
+
+    .container {
+      width: min(calc(100% - 1.25rem), var(--hm-container));
+    }
+  }
+
+  .hellmoon-nav {
+    min-height: 66px;
+  }
+
+  .hellmoon-menu-toggle {
+    width: 40px;
+    height: 40px;
+    border-color: transparent;
+  }
+
+  .hellmoon-brand {
+    gap: .35rem;
+  }
+
+  .hellmoon-brand img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .hellmoon-brand__name {
+    font-size: .82rem;
+    letter-spacing: .12em;
+  }
+
+  .hellmoon-nav__actions salla-search {
+    width: 36px;
+    min-width: 36px;
+  }
+
+  .hellmoon-nav__actions salla-cart-summary {
+    min-width: 40px;
+  }
+
+  .hellmoon-nav__actions .header-btn__icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .hellmoon-hero {
+    background:
+      radial-gradient(circle at 50% 62%, rgba(123, 17, 38, .2), transparent 18rem),
+      #08090b;
+  }
+
+  .hellmoon-hero__inner {
+    padding-block: 2.75rem .75rem;
+  }
+
+  .hellmoon-hero__copy {
+    text-align: start;
+
+    &::before {
+      margin-inline: 0;
+    }
+
+    h1 {
+      font-size: clamp(2.65rem, 13vw, 4rem);
+      line-height: 1.16;
+    }
+
+    p {
+      max-width: 360px;
+      margin-inline: 0;
+      margin-top: 1.15rem;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+  }
+
+  .hellmoon-hero__actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .75rem;
+    margin-top: 1.75rem;
+  }
+
+  .hellmoon-btn {
+    width: 100%;
+    min-width: 0;
+    min-height: 54px;
+  }
+
+  .hellmoon-btn--secondary {
+    border-color: transparent;
+    background: transparent;
+    justify-content: flex-start;
+    padding-inline: 0;
+  }
+
+  .hellmoon-hero__visual {
+    min-height: 300px;
+    margin-inline: -.625rem;
+  }
+
+  .hellmoon-hero__visual img {
+    width: 112%;
+    max-width: none;
+    max-height: 340px;
+  }
+
+  .hellmoon-section-title {
+    gap: .65rem;
+  }
+
+  .hellmoon-section-title h2 {
+    font-size: 1.65rem;
+  }
+
+  .hellmoon-section-title h2::before,
+  .hellmoon-section-title h2::after {
+    margin-inline: .35rem;
+  }
+
+  .hellmoon-category {
+    min-height: 155px;
+    gap: .7rem;
+    padding: 1.5rem .65rem;
+
+    > i {
+      font-size: 2.15rem;
+    }
+
+    h3 {
+      font-size: .91rem;
+    }
+
+    p {
+      display: none;
+    }
+  }
+
+  .hellmoon-category__arrow {
+    display: none;
+  }
+
+  .hellmoon-steps {
+    padding-block: 2.5rem;
+  }
+
+  .hellmoon-steps h2 {
+    margin-bottom: 1.5rem;
+  }
+
+  .hellmoon-steps li {
+    min-height: 94px;
+    padding-inline: .5rem;
+  }
+
+  .hellmoon-product-features {
+    grid-template-columns: 1fr 1fr;
+
+    > div {
+      min-height: 78px;
+      flex-direction: column;
+      gap: .4rem;
+      text-align: center;
+    }
+
+    span {
+      font-size: .75rem;
+    }
+  }
+
+  .hellmoon-page-title {
+    margin-top: .5rem;
+    font-size: 2.35rem;
+  }
+
+  .theme-hellmoon .cart-item {
+    padding-inline: .25rem !important;
+  }
+
+  .hellmoon-footer__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hellmoon-footer__bottom {
+    min-height: 100px;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hellmoon-hero__visual img {
+    animation: none;
+  }
+
+  .hellmoon-btn,
+  .hellmoon-category,
+  .s-product-card-entry {
+    transition-duration: .01ms !important;
+  }
+}

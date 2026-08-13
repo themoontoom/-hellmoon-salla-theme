@@ -1,0 +1,34 @@
+{#
+| Variable                      | Type     | Description
+|-------------------------------|----------|--------------------------------------------
+| component.title               | string   | Section heading
+| component.links               | object[] | Up to four editable category links
+| component.links[].icon        | string   | Salla icon class
+| component.links[].title       | string   | Link title
+| component.links[].description | string   | Short supporting copy
+| component.links[].url         | string   | Salla variable-list URL
+#}
+<section class="hellmoon-categories s-block" data-testid="store-home-hellmoon-categories">
+    <div class="container">
+        <div class="hellmoon-section-title">
+            <span aria-hidden="true"></span>
+            <h2>{{ component.title ?: (theme.is_rtl ? 'اختر طريقك للسيطرة' : 'Choose your path') }}</h2>
+            <span aria-hidden="true"></span>
+        </div>
+
+        <div class="hellmoon-categories__rail">
+            {% for item in component.links|slice(0, 4) %}
+                <a class="hellmoon-category" href="{{ item.url ?: store.url ~ '/products' }}">
+                    <i class="{{ item.icon ?: 'sicon-game-controller-alt' }}" aria-hidden="true"></i>
+                    <div>
+                        <h3>{{ item.title }}</h3>
+                        {% if item.description %}
+                            <p>{{ item.description }}</p>
+                        {% endif %}
+                    </div>
+                    <span class="hellmoon-category__arrow sicon-arrow-left" aria-hidden="true"></span>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
